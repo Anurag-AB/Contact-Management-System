@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Update Contact page</title>
+</head>
+<body>
+	<section>
+	
+	
+	<div class="container">
+<div class="row">
+<div class="col-md-8 offset-md-2">
+
+<div class="card mt-4">
+<div class="card-body">
+
+<h2 class="text-center mb-4">Update Contact</h2>
+
+<form th:object="${contact}"
+      method="post"
+      enctype="multipart/form-data"
+      th:action="@{/user/process-update}">
+      
+      <input type="hidden" th:value="${contact.cId}" name="cId"/>
+
+    <!-- Name -->
+    <div class="form-group">
+        <label>Name</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-user"></i>
+                </span>
+            </div>
+            <input th:value="${contact.name}" required type="text" name="name" class="form-control" placeholder="Enter name">
+        </div>
+    </div>
+
+    <!-- Second Name -->
+    <div class="form-group">
+        <label>Second Name</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-user-plus"></i>
+                </span>
+            </div>
+            <input th:value="${contact.secondName}" type="text" name="secondName" class="form-control" placeholder="Enter second name">
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label>Email</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-envelope"></i>
+                </span>
+            </div>
+            <input th:value="${contact.email}" required type="email" name="email" class="form-control" placeholder="Enter email">
+        </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+    <label>Phone</label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-phone"></i>
+            </span>
+        </div>
+        <input th:value="${contact.phone}" type="text" th:field="*{phone}" class="form-control" placeholder="Enter phone number">
+    </div>
+
+    <!-- Error message -->
+    <small class="text-danger" th:if="${#fields.hasErrors('phone')}" 
+           th:errors="*{phone}"></small>
+</div>
+
+    <!-- Work -->
+    <div class="form-group">
+        <label>Work</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-briefcase"></i>
+                </span>
+            </div>
+            <input th:value="${contact.work}" type="text" name="work" class="form-control" placeholder="Enter work">
+        </div>
+    </div>
+
+   <!-- Description -->
+<div  class="form-group">
+    <label>Description</label>
+
+    <div  class="d-flex">
+        <span class="input-group-text">
+            <i class="fa fa-pencil"></i>
+        </span>
+
+        <textarea th:text="${contact.description}"
+                  name="description"
+                  rows="5"
+                  class="form-control ml-2"
+                  placeholder="Enter description here..."></textarea>
+    </div>
+</div>
+    
+    <!-- Contact Image -->
+    <div class="container text-center">
+    <img alt="" style="width:250px;height:250px;" class="img-fluid my_profile_picture" th:src="@{'/img/'+${contact.image}}">
+    </div>
+    
+    <p class="text-secondary">choose profile picture</p>
+    
+    <div class="custom-file mt-2">
+    <input type="file" name="profileImage"/>
+    </div>
+
+    <!-- Submit -->
+    <div class="text-center mt-3 ">
+        <button type="submit" class="btn bg-primary text-white px-4">
+            Add Contact
+        </button>
+    </div>
+
+</form>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+	
+	
+	</section>
+</body>
+</html>

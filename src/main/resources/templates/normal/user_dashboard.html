@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="normal/base::layout(~{::section})">
+
+<section>
+
+<style>
+    :root {
+        --primary: #4f46e5;
+        --primary-dark: #3730a3;
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --text: #111827;
+        --muted: #6b7280;
+        --radius: 16px;
+    }
+
+    body {
+        background: var(--bg);
+        font-family: "Segoe UI", Roboto, sans-serif;
+    }
+
+    .dashboard-wrapper {
+        max-width: 1050px;
+        margin: 90px auto 50px;
+        padding: 0 20px;
+    }
+
+    /* ===== PROFILE SECTION ===== */
+    .profile-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 25px 30px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .profile-img {
+        width: 78px;
+        height: 78px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba(79,70,229,0.2);
+    }
+
+    .profile-info h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    .profile-info p {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+        margin: 35px 0 20px;
+        text-align: left;
+    }
+
+    .header h1 {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0;
+    }
+
+    .header span {
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 22px;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.04);
+        transition: all 0.25s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+
+    .card h3 {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    .card p {
+        margin: 6px 0 15px;
+        font-size: 13px;
+        color: var(--muted);
+    }
+
+    /* ===== BUTTON ===== */
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        border: none;
+        padding: 9px 16px;
+        border-radius: 10px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.25s;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(79,70,229,0.25);
+    }
+
+</style>
+
+<div class="dashboard-wrapper">
+
+    <!-- PROFILE -->
+    <div class="profile-card">
+
+        <img th:src="${user.imageUrl} != null ?
+              @{/img/{img}(img=${user.imageUrl})} :
+              @{/img/user.png}"
+             class="profile-img">
+
+        <div class="profile-info">
+            <h2 th:text="${user.name}">User Name</h2>
+            <p>Welcome back 👋 Here’s your workspace overview</p>
+        </div>
+
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Dashboard</h1>
+        <span>Manage your contacts and account in one place</span>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+        <!-- Contacts -->
+        <div class="card">
+            <div class="icon">📇</div>
+            <h3>My Contacts</h3>
+            <p>View, search and organize saved contacts</p>
+            <a th:href="@{/user/show-contacts/0}">
+                <button class="btn-primary">Open</button>
+            </a>
+        </div>
+
+        <!-- Add -->
+        <div class="card">
+            <div class="icon">➕</div>
+            <h3>Add Contact</h3>
+            <p>Create and store a new contact instantly</p>
+            <a th:href="@{/user/add-contact}">
+                <button class="btn-primary">Add</button>
+            </a>
+        </div>
+
+        <!-- Profile -->
+        <div class="card">
+            <div class="icon">👤</div>
+            <h3>Profile</h3>
+            <p>Update your personal details & image</p>
+            <a th:href="@{/user/profile}">
+                <button class="btn-primary">View</button>
+            </a>
+        </div>
+
+        <!-- Settings -->
+        <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>Settings</h3>
+            <p>Control preferences and account settings</p>
+            <a th:href="@{/user/setting}">
+                <button class="btn-primary">Manage</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+</html>

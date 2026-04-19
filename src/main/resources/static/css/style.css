@@ -1,0 +1,146 @@
+/* Global */
+body{
+    background:#e2e2e2 !important;
+    margin:0;
+    padding:0;
+}
+
+/* Navbar color */
+.bg-primary{
+    background:#009688 !important;
+    
+}
+
+.my-card{
+    padding:20px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    
+}
+
+/* ================= HOME BANNER ================= */
+
+.banner{
+    width:100%;
+    height:93vh;
+
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url("../img/imge.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+    text-align:center;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:18%;
+    background:white;
+    height:100vh;
+    position:fixed;
+    padding-top:45px;
+    z-index:9999999999999999;
+}
+
+/* sidebar links */
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    padding:10px 25px;
+    text-decoration:none;
+    color:gray;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:#e2e2e2;
+}
+
+/* icons */
+.sidebar i{
+    width:25px;
+    text-align:center;
+}
+
+/* prevent text break */
+.sidebar span{
+    white-space:nowrap;
+}
+
+/* logout button */
+.logout-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    padding:10px 25px;
+    border:none;
+    background:none;
+    color:gray;
+    text-transform:uppercase;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:#e2e2e2;
+}
+
+/* divider */
+.sidebar .divider{
+    height:1px;
+    width:100%;
+    background:#e2e2e2;
+    margin-top:10px;
+}
+
+/* close button */
+.sidebar .crossBtn{
+    position:absolute;
+    top:0;
+    right:20px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    margin-left:20%;
+    padding:20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media only screen and (max-width:600px){
+
+    .sidebar{
+        display:none;
+        width:80% !important;
+        height:100vh;
+        padding-top:20px;
+    }
+
+    .content{
+        margin-left:0% !important;
+    }
+    
+}
+
+.my_profile_picture{
+	width:35px;
+	height:35px;
+	object-fit:cover;
+	border-radius:50%;
+	
+}

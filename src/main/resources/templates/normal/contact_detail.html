@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Contact Details</title>
+</head>
+
+<body>
+	<section>
+		<div class="container mt-5">
+
+			<div class="card shadow-lg border-0" th:if=${contact}>
+
+				<!-- HEADER -->
+				<div class="card-header text-white text-center"
+					style="background: linear-gradient(45deg, #007bff, #00c6ff);">
+					<h3 class="mb-0">Contact Details</h3>
+				</div>
+
+				<div class="card-body ">
+
+					<!-- PROFILE -->
+					<div class="text-center">
+
+						<img alt="profile photo" class="rounded-circle shadow"
+							style="height: 150px; width: 150px; object-fit: cover; border: 4px solid #fff;"
+							th:src="@{'/img/' + ${contact.image}}">
+
+						<h3 class="mt-3 font-weight-bold">
+							<span th:text="${contact.name}"></span> <span class="text-muted">
+								(<span th:text="${contact.secondName}"></span>)
+							</span>
+						</h3>
+
+					</div>
+
+					<hr>
+
+					<!-- BASIC DETAILS -->
+					<div class="row text-center">
+
+						<div class="col-md-4 mb-3">
+							<div class="p-3 border rounded shadow-sm">
+								<h6 class="text-muted">ID</h6>
+								<strong th:text="${contact.cId}"></strong>
+							</div>
+						</div>
+
+						<div class="col-md-4 mb-3">
+							<div class="p-3 border rounded shadow-sm">
+								<h6 class="text-muted">Email</h6>
+								<span th:text="${contact.email}"></span>
+							</div>
+						</div>
+
+						<div class="col-md-4 mb-3">
+							<div class="p-3 border rounded shadow-sm">
+								<h6 class="text-muted">Phone</h6>
+								<span th:text="${contact.phone}"></span>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- DESCRIPTION + WORK SIDE BY SIDE -->
+					<div class="row mt-4">
+
+						<!-- Description -->
+						<div class="col-md-8 mb-3 text-center">
+							<div class="p-4 bg-light rounded shadow-sm h-100">
+								<h5>Description</h5>
+								<p class="text-muted mb-0" th:utext="${contact.description}"></p>
+							</div>
+						</div>
+
+						<!-- Work -->
+						<div class="col-md-4 mb-3">
+							<div class="p-4 border rounded shadow-sm text-center h-100">
+								<h6 class="text-muted">💼 Work</h6>
+								<span class="badge bg-primary px-3 py-2"
+									th:text="${contact.work}"></span>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- ACTION BUTTON -->
+					<div class="text-center mt-4">
+						<a th:href="@{'/user/show-contacts/0'}"
+							class="btn btn-outline-secondary"> ⬅ Back </a>
+
+						<form method="post"
+							th:action="@{'/user/update-contact/'+${contact.cId}}">
+							<button type="submit" class="btn btn-primary btn-sm">✏️
+								Update</button>
+						</form>
+
+
+						<a href="#" th:onclick="|deleteContact(${contact.cId})|"
+							class="btn btn-danger"> 🗑 Delete </a>
+					</div>
+
+				</div>
+
+			</div>
+			<h1 class="text-center p-3 bg-danger text-white"
+				th:unless="${contact}">You Dont have permission to see this
+				contact</h1>
+
+		</div>
+	</section>
+</body>
+</html>

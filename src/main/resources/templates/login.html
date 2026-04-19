@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+
+<style>
+    .login-card {
+        max-width: 400px;
+        margin: auto;
+        border-radius: 1rem;
+    }
+</style>
+
+</head>
+
+<body>
+
+<section class="vh-100 gradient-custom d-flex align-items-center">
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+
+      <div class="col-md-6 col-lg-5">
+
+        <div class="card bg-primary text-white login-card shadow">
+
+          <div class="card-body p-4 text-center"> <!-- reduced padding -->
+
+            <h3 class="fw-bold mb-3">Login</h3>
+            <p class="text-white-50 mb-4">Enter your credentials</p>
+
+            <!-- ERROR -->
+            <div th:if="${param.error}" class="alert alert-danger">
+                Invalid username or password
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logout
+            </div>
+
+            <!-- FORM -->
+            <form th:action="@{/dologin}" method="post">
+
+              <div class="mb-3">
+                <input type="email" name="username"
+                       class="form-control form-control-md"
+                       placeholder="Email" required>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" name="password"
+                       class="form-control form-control-md"
+                       placeholder="Password" required>
+              </div>
+
+              <div class="mb-3">
+                <a href="#" class="text-white small">Forgot password?</a>
+              </div>
+
+              <button class="btn btn-outline-light btn-md w-100" type="submit">
+                  Login
+              </button>
+
+            </form>
+
+            <div class="mt-3">
+              <p class="mb-0 small">
+                Don't have an account?
+                <a href="/signup" class="text-warning fw-bold">Sign Up</a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

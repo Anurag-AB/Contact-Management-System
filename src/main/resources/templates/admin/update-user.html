@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background:#f5f7fa;">
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow border-0">
+                <div class="card-body">
+
+                    <h3 class="text-center mb-4">Update User</h3>
+
+                    <!-- ✅ Form -->
+                    <form th:action="@{/admin/update-user}" method="post" th:object="${user}">
+
+                        <!-- Hidden ID -->
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" th:field="*{name}" class="form-control" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" th:field="*{email}" class="form-control" required>
+                        </div>
+
+                        <!-- About -->
+                        <div class="mb-3">
+                            <label class="form-label">About</label>
+                            <textarea th:field="*{about}" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        
+
+                        <!-- Enabled -->
+                        <div class="form-check mb-3">
+                            <input type="checkbox" th:field="*{enabled}" class="form-check-input">
+                            <label class="form-check-label">Active</label>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success me-2">Update</button>
+                            <a href="/admin/manage-users" class="btn btn-secondary">Cancel</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
